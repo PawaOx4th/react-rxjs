@@ -1,8 +1,8 @@
 {
-  "singleQuote": true,
   "useTabs": true,
-  "tabWidth": 1,
+  "tabWidth": 2,
   "semi": false,
   "jsxSingleQuote": true,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "quoteProps": "as-needed"
 }
