@@ -27,6 +27,10 @@ function Search() {
         type='text'
         value={search}
         onChange={e => setSearch(e.target.value)}
+        style={{
+          padding: "0.4rem",
+          marginTop: "1rem",
+        }}
       />
       <hr />
       <div>

@@ -24,8 +24,9 @@
 }
 
 .content {
-  height: 500px;
+  height: 700px;
   overflow-y: scroll;
   border: 2px solid salmon;
   width: 100%;
+  letter-spacing: 1.275px;
 }
