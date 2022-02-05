@@ -1,41 +1,75 @@
-import React, { useEffect, useMemo, useState } from "react";
-import "./App.css";
 import { useObservableState } from "observable-hooks";
-import { IPokemon, selected$, pokemon$, desk$ } from "./store/state";
+import React, { useCallback, useContext, useMemo } from "react";
+import { BehaviorSubject, combineLatestWith, map } from "rxjs";
+import "./App.css";
+import { PokermonContext } from "./Context";
+import { selected$ } from "./store/state";
+
+export const usePokemon = () => useContext(PokermonContext);
 
 function Search() {
-  const [search, setSearch] = useState("");
-  const [pokemons, setPokemons] = useState<IPokemon[]>([]);
+  // const [search, setSearch] = useState("");
+  const { pokemon$ } = usePokemon();
+  const search$ = useMemo(() => new BehaviorSubject(""), []);
+  // const pokemons = useObservableState(pokemon$, []);
 
-  const resultFilter = useMemo(
+  const [resultFilter] = useObservableState(
     () =>
-      pokemons.filter(pokemon =>
-        pokemon.name.toLowerCase().includes(search.toLowerCase())
+      pokemon$.pipe(
+        combineLatestWith(search$),
+        map(([pokemon, search]) =>
+          pokemon.filter(p =>
+            p.name.toLowerCase().includes(search.toLowerCase())
+          )
+        )
       ),
-    [search, pokemons]
+    []
   );
-  useEffect(() => {
-    const sub = pokemon$.subscribe(setPokemons);
 
-    return () => {
-      sub.unsubscribe();
-    };
-  }, []);
+  // const resultFilter = useMemo(
+  //   () =>
+  //     pokemons.filter(pokemon =>
+  //       pokemon.name.toLowerCase().includes(search$.value.toLowerCase())
+  //     ),
+  //   [search$, pokemons]
+  // );
 
   return (
     <div>
-      <input
-        type='text'
-        value={search}
-        onChange={e => setSearch(e.target.value)}
+      <div
         style={{
-          padding: "0.4rem",
-          marginTop: "1rem",
-          fontFamily: "Architects Daughter",
-          fontWeight: "bold",
-          fontSize: "1.75rem",
+          display: "flex",
+          gap: "1rem",
+          justifyContent: "center",
+          alignItems: "center",
         }}
-      />
+      >
+        <input
+          type='text'
+          value={search$.value}
+          onChange={e => search$.next(e.target.value)}
+          style={{
+            padding: "0.4rem",
+            fontFamily: "Architects Daughter",
+            fontWeight: "bold",
+            fontSize: "1.75rem",
+          }}
+        />
+        <button
+          disabled={search$.value.length === 0}
+          type='button'
+          onClick={() => search$.next("")}
+          style={{
+            width: "2.5rem",
+            height: "2.5rem",
+            borderRadius: "50%",
+            outline: "none",
+            border: "1px transparent",
+          }}
+        >
+          X
+        </button>
+      </div>
       <hr />
       <div>
         {resultFilter.length > 0 ? (
@@ -68,10 +102,22 @@ function Search() {
 }
 
 function Desk() {
+  const { desk$, selected$ } = usePokemon();
   const desk = useObservableState(desk$, []);
+
+  const onClearDesk = () => {
+    selected$.next([]);
+  };
+
+  const onRemoveFromDesk = useCallback((id: number) => {
+    selected$.next(selected$.value.filter(item => item !== id));
+  }, []);
 
   return (
     <div>
+      <button type='button' onClick={() => onClearDesk()}>
+        Clear
+      </button>
       <ul
         style={{
           display: "grid",
@@ -90,6 +136,9 @@ function Desk() {
                 loading='lazy'
                 alt=''
               />
+              <button type='button' onClick={() => onRemoveFromDesk(item.id)}>
+                Remove.
+              </button>
               {item.name}
             </li>
           ))}

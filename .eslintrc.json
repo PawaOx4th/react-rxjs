@@ -57,7 +57,6 @@
     ],
     "no-console": 1,
     "import/prefer-default-export": 1,
-    "no-shadow": 1,
     "prefer-const": 1,
     "prefer-spread": 1,
     "no-unused-expressions": [
@@ -70,6 +69,11 @@
     "no-param-reassign": [
       "error",
       { "props": true, "ignorePropertyModificationsFor": ["state"] }
-    ]
+    ],
+    "no-redeclare": "off",
+    "no-import-assign": "off",
+    "import/no-self-import": "off",
+    "react/jsx-no-constructed-context-values": "off",
+    "no-shadow": "off"
   }
 }
