@@ -30,6 +30,9 @@ function Search() {
         style={{
           padding: "0.4rem",
           marginTop: "1rem",
+          fontFamily: "Architects Daughter",
+          fontWeight: "bold",
+          fontSize: "1.75rem",
         }}
       />
       <hr />
