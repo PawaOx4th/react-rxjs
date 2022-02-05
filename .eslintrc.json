@@ -1,76 +1,76 @@
 {
-	"env": {
-		"browser": true,
-		"es2021": true
-	},
-	"extends": ["plugin:react/recommended", "airbnb", "prettier"],
-	"parser": "@typescript-eslint/parser",
-	"parserOptions": {
-		"ecmaFeatures": {
-			"jsx": true
-		},
-		"ecmaVersion": "latest",
-		"sourceType": "module"
-	},
-	"plugins": ["react", "@typescript-eslint"],
-	"settings": {
-		"import/resolver": {
-			"node": {
-				"extensions": [".js", ".jsx", ".ts", ".tsx"],
-				"moduleDirectory": ["node_modules", "src/"]
-			}
-		}
-	},
-	"rules": {
-		"react/jsx-filename-extension": [
-			1,
-			{ "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-		],
-		"import/extensions": [
-			"error",
-			"always",
-			{
-				"js": "never",
-				"jsx": "never",
-				"ts": "never",
-				"tsx": "never"
-			}
-		],
-		"quotes": "off",
-		"import/no-extraneous-dependencies": ["off"],
-		"react/jsx-indent-props": [2, "tab"],
-		"react/jsx-props-no-spreading": "off",
-		"no-use-before-define": [1],
-		"react/display-name": 1,
-		"react/prop-types": 0,
-		"@typescript-eslint/explicit-function-return-type": 0,
-		"@typescript-eslint/explicit-member-accessibility": 1,
-		"@typescript-eslint/indent": 0,
-		"@typescript-eslint/member-delimiter-style": 1,
-		"@typescript-eslint/no-explicit-any": 1,
-		"@typescript-eslint/no-var-requires": 1,
-		"@typescript-eslint/no-use-before-define": 1,
-		"@typescript-eslint/no-unused-vars": [
-			1,
-			{
-				"argsIgnorePattern": "^_"
-			}
-		],
-		"no-console": 1,
-		"import/prefer-default-export": 1,
-		"no-shadow": 1,
-		"prefer-const": 1,
-		"prefer-spread": 1,
-		"no-unused-expressions": [
-			"error",
-			{ "allowShortCircuit": true, "allowTernary": true }
-		],
-		"no-return-assign": "warn",
-		"no-underscore-dangle": "warn",
-		"react/require-default-props": [2, { "ignoreFunctionalComponents": true }],
-		"no-param-reassign": [
-			"error",
-			{ "props": true, "ignorePropertyModificationsFor": ["state"] }
-		]
-	}
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
+  },
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "quotes": "off",
+    "import/no-extraneous-dependencies": ["off"],
+    "react/jsx-indent-props": [2, "tab"],
+    "react/jsx-props-no-spreading": "off",
+    "no-use-before-define": [1],
+    "react/display-name": 1,
+    "react/prop-types": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/explicit-member-accessibility": 1,
+    "@typescript-eslint/indent": 0,
+    "@typescript-eslint/member-delimiter-style": 1,
+    "@typescript-eslint/no-explicit-any": 1,
+    "@typescript-eslint/no-var-requires": 1,
+    "@typescript-eslint/no-use-before-define": 1,
+    "@typescript-eslint/no-unused-vars": [
+      1,
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "no-console": 1,
+    "import/prefer-default-export": 1,
+    "no-shadow": 1,
+    "prefer-const": 1,
+    "prefer-spread": 1,
+    "no-unused-expressions": [
+      "error",
+      { "allowShortCircuit": true, "allowTernary": true }
+    ],
+    "no-return-assign": "warn",
+    "no-underscore-dangle": "warn",
+    "react/require-default-props": [2, { "ignoreFunctionalComponents": true }],
+    "no-param-reassign": [
+      "error",
+      { "props": true, "ignorePropertyModificationsFor": ["state"] }
+    ]
+  }
 }
