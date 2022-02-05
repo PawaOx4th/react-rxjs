@@ -38,7 +38,6 @@
     ],
     "quotes": "off",
     "import/no-extraneous-dependencies": ["off"],
-    "react/jsx-indent-props": [2, "tab"],
     "react/jsx-props-no-spreading": "off",
     "no-use-before-define": [1],
     "react/display-name": 1,
