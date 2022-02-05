@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "./App.css";
+import { useObservableState } from "observable-hooks";
 import { IPokemon, selected$, pokemon$, desk$ } from "./store/state";
 
 function Search() {
@@ -67,15 +68,7 @@ function Search() {
 }
 
 function Desk() {
-  const [desk, setDesk] = useState<IPokemon[]>([]);
-
-  useEffect(() => {
-    const deskSub = desk$.subscribe(setDesk);
-
-    return () => {
-      deskSub.unsubscribe();
-    };
-  }, []);
+  const desk = useObservableState(desk$, []);
 
   return (
     <div>
@@ -86,19 +79,20 @@ function Desk() {
           gap: "1rem",
         }}
       >
-        {desk.map(item => (
-          <li
-            style={{ listStyle: "none", border: "1px solid #fff" }}
-            key={item.id}
-          >
-            <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.id}.png`}
-              loading='lazy'
-              alt=''
-            />
-            {item.name}
-          </li>
-        ))}
+        {desk &&
+          desk.map(item => (
+            <li
+              style={{ listStyle: "none", border: "1px solid #fff" }}
+              key={item.id}
+            >
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.id}.png`}
+                loading='lazy'
+                alt=''
+              />
+              {item.name}
+            </li>
+          ))}
       </ul>
     </div>
   );
